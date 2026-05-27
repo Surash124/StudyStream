@@ -1,230 +1,97 @@
-# WEB_FINAL_PROJECT
-# EduLearn
+# StudyStream
 
-A full-stack educational video platform built with the MERN stack (MongoDB, Express, React, Node.js). Users can browse and watch curated video lessons, take timestamped notes, save videos for later, track their watch history, and ask questions in per-video Q&A threads. Admins manage the video library from a dedicated dashboard.
+A collaborative web platform designed for curated educational study, allowing users to save, organize, and annotate video content.
 
----
+**Note:** This repository is an independent fork of the original group project developed for [Course/University Name].
 
-## Table of Contents
+## Project Overview
+StudyStream serves as a centralized hub for managing study resources. By leveraging the YouTube IFrame API, the application enables seamless video embedding and organization, helping students maintain focus by minimizing the distractions inherent in the standard YouTube interface.
 
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Backend Setup](#backend-setup)
-  - [Frontend Setup](#frontend-setup)
-- [Environment Variables](#environment-variables)
-- [API Reference](#api-reference)
-- [Authentication](#authentication)
-- [Pages & Routes](#pages--routes)
-- [Role System](#role-system)
+## Technologies Used
+* **Frontend:** React.js, Tailwind CSS
+* **Backend:** Node.js, Express
+* **Database:** MongoDB (Mongoose)
+* **API:** YouTube IFrame API
+* **Deployment:** Vercel (Frontend), Render (Backend)
 
----
+## My Contributions
+As a primary developer on this project, I was responsible for the end-to-end design and implementation of core features, including:
 
-## Features
-
-### For Users
-- **Browse & Search** - Discover videos by title, tags, or category from the Home page.
-- **Video Player** - Watch YouTube-embedded videos with a clean, distraction-free interface.
-- **Timestamped Notes** - Write notes tied to a specific second in a video; notes are sorted by timestamp so they follow along with playback.
-- **Saved Videos** - Bookmark videos into a personal watch-later list; a duplicate-save guard prevents double entries.
-- **Watch History** - Every video watch is recorded. Re-watching the same video refreshes the timestamp rather than creating a duplicate entry.
-- **Q&A Threads** - Ask questions on any video and reply to other users' questions. Authors and admins can delete questions.
-- **Settings** - Update display name, avatar URL, password (with current-password verification), and UI preferences (theme, font size, accent colour).
-
-### For Admins
-- **Admin Dashboard** - Add new videos (title, description, YouTube ID, thumbnail, category, tags), edit existing ones, and delete them.
-- **Role-based access** - Admin-only endpoints are guarded server-side by the `adminOnly` middleware; the sidebar link is also hidden from regular users in the UI.
-
----
-
-## Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Frontend | React 18, Vite, React Router v6, Axios, react-youtube |
-| Backend | Node.js, Express 4 |
-| Database | MongoDB (Mongoose ODM) |
-| Auth | JWT (stored as HTTP-only cookie + Authorization header fallback) |
-| Password hashing | bcryptjs |
-
----
-
-## Project Structure
-![alt text](/projectstructure.png)
----
+* **UX/UI Design:** Created initial wireframes and design prototypes in Figma to establish the platform's user flow and interface before development.
+* **Backend Development:** Engineered the complete backend logic for the "Notes" and "Saved Content" modules, including designing database schemas and developing robust API controllers.
+* **API Integration & Testing:** Implemented and performed comprehensive testing of the backend API endpoints to ensure data integrity and secure communication.
+* **Deployment & DevOps:** Orchestrated the production deployment for both the frontend (Vercel) and backend (Render) infrastructures.
 
 ## Getting Started
+To run this project locally:
 
-### Prerequisites
-
-- Node.js v18 or later
-- A MongoDB Atlas cluster (or a local MongoDB instance)
-- npm
-
-### Backend Setup
-
-```bash
-cd FinpOI/backend
-npm install
-```
-
-Create a `.env` file in `backend/` (see [Environment Variables](#environment-variables) below), then start the server:
-
-```bash
-# Development (auto-restarts with nodemon)
-npm run dev
-
-# Production
-npm start
-```
-
-The server listens on `http://localhost:5000` by default.
-
-### Frontend Setup
-
-```bash
-cd FinpOI/frontend
-npm install
-npm run dev
-```
-
-The Vite dev server starts at `http://localhost:5173` and proxies API calls to the backend.
-
-To build for production:
-
-```bash
-npm run build        # outputs to dist/
-npm run preview      # preview the production build locally
-```
+1. Clone the repository:
+   `git clone https://github.com/Surash124/StudyStream.git`
+2. Install dependencies:
+   `npm install`
+3. Configure your `.env` file with the required `MONGODB_URI` and API keys.
+4. Start the application:
+   `npm run dev`
 
 ---
+*Developed as a collaborative project.*# StudyStream
 
-## Environment Variables
+A collaborative web platform designed for curated educational study, allowing users to save, organize, and annotate video content.
 
-Create `backend/.env` with the following keys:
+**Note:** This repository is an independent fork of the original group project developed for [Course/University Name].
 
-| Variable | Description | Example |
-|---|---|---|
-| `PORT` | Port the Express server listens on | `5000` |
-| `MONGO_URI` | Full MongoDB connection string | `mongodb+srv://<user>:<pass>@cluster.mongodb.net/edulearn` |
-| `JWT_SECRET` | Secret key used to sign JWTs | `some_long_random_string` |
-| `JWT_EXPIRE` | Token lifetime (parsed by jsonwebtoken) | `7d` |
-| `CLIENT_URL` | CORS allowed origin (your frontend URL) | `http://localhost:5173` |
+## Project Overview
+StudyStream serves as a centralized hub for managing study resources. By leveraging the YouTube IFrame API, the application enables seamless video embedding and organization, helping students maintain focus by minimizing the distractions inherent in the standard YouTube interface.
 
-> **Never commit `.env` to version control.** Add it to `.gitignore`.
+## Technologies Used
+* **Frontend:** React.js, Tailwind CSS
+* **Backend:** Node.js, Express
+* **Database:** MongoDB (Mongoose)
+* **API:** YouTube IFrame API
+* **Deployment:** Vercel (Frontend), Render (Backend)
 
----
+## My Contributions
+As a primary developer on this project, I was responsible for the end-to-end design and implementation of core features, including:
 
-## API Reference
+* **UX/UI Design:** Created initial wireframes and design prototypes in Figma to establish the platform's user flow and interface before development.
+* **Backend Development:** Engineered the complete backend logic for the "Notes" and "Saved Content" modules, including designing database schemas and developing robust API controllers.
+* **API Integration & Testing:** Implemented and performed comprehensive testing of the backend API endpoints to ensure data integrity and secure communication.
+* **Deployment & DevOps:** Orchestrated the production deployment for both the frontend (Vercel) and backend (Render) infrastructures.
 
-All endpoints are prefixed with `/api`.
+## Getting Started
+To run this project locally:
 
-### Auth - `/api/auth`
-
-| Method | Path | Auth | Description |
-|---|---|---|---|
-| POST | `/signup` | Public | Register a new user account |
-| POST | `/login` | Public | Log in; sets HTTP-only JWT cookie |
-| POST | `/logout` | Protected | Clears the auth cookie |
-| GET | `/me` | Protected | Returns the current user's profile |
-
-### Videos - `/api/videos`
-
-| Method | Path | Auth | Description |
-|---|---|---|---|
-| GET | `/` | Public | List all videos; supports `?search=` and `?category=` query params |
-| GET | `/:id` | Public | Get a single video by ID |
-| POST | `/` | Admin | Add a new video |
-| PUT | `/:id` | Admin | Update a video |
-| DELETE | `/:id` | Admin | Delete a video |
-
-### Notes - `/api/notes`
-
-| Method | Path | Auth | Description |
-|---|---|---|---|
-| GET | `/` | Protected | Get all of the current user's notes (all videos) |
-| GET | `/:videoId` | Protected | Get the current user's notes for a specific video, sorted by timestamp |
-| POST | `/` | Protected | Create a note (`videoId`, `content`, `timestamp` in body) |
-| PUT | `/:id` | Protected | Update a note's content |
-| DELETE | `/:id` | Protected | Delete a note |
-
-### Saved - `/api/saved`
-
-| Method | Path | Auth | Description |
-|---|---|---|---|
-| GET | `/` | Protected | Get the current user's saved videos |
-| POST | `/` | Protected | Save a video (`videoId` in body); returns 400 if already saved |
-| DELETE | `/:videoId` | Protected | Remove a video from saved |
-
-### History - `/api/history`
-
-| Method | Path | Auth | Description |
-|---|---|---|---|
-| GET | `/` | Protected | Get the current user's watch history, newest first |
-| POST | `/` | Protected | Record or refresh a watch entry (`videoId` in body) |
-| DELETE | `/:videoId` | Protected | Remove a single entry from history |
-| DELETE | `/clear` | Protected | Clear the entire watch history |
-
-### Q&A - `/api/qa`
-
-| Method | Path | Auth | Description |
-|---|---|---|---|
-| GET | `/:videoId` | Public | Get all questions and answers for a video |
-| POST | `/` | Protected | Post a question (`videoId`, `question` in body) |
-| PUT | `/:id/answer` | Protected | Append an answer (`answer` in body) to a question |
-| DELETE | `/:id` | Protected | Delete a question (author or admin only) |
-
-### Users - `/api/users`
-
-| Method | Path | Auth | Description |
-|---|---|---|---|
-| PUT | `/profile` | Protected | Update display name and/or avatar URL |
-| PUT | `/password` | Protected | Change password (requires `currentPassword` + `newPassword`) |
-| PUT | `/settings` | Protected | Update UI preferences (`theme`, `appearance`) |
+1. Clone the repository:
+   `git clone https://github.com/Surash124/StudyStream.git`
+2. Install dependencies:
+   `npm install`
+3. Configure your `.env` file with the required `MONGODB_URI` and API keys.
+4. Start the application:
+   `npm run dev`
 
 ---
+*Developed as a collaborative project.*
 
-## Authentication
+# Project Summary: StudyStream (MERN)
 
-Authentication uses **JSON Web Tokens (JWT)**:
+A full-stack platform for curated educational YouTube videos with study-focused features.
 
-1. On login or signup, the server signs a JWT containing the user's `_id` and sends it as an **HTTP-only cookie** (`token`). The token is also returned in the response body for clients that prefer the `Authorization: Bearer <token>` header.
-2. The `protect` middleware checks for the token first in the `Authorization` header, then falls back to the cookie.
-3. If the token is valid, the user document (without the password hash) is attached to `req.user` for all downstream handlers.
-4. Logout overwrites the cookie with an expired empty value, clearing it from the browser.
+## Core Features
+* **Video Hub**: Distraction-free embedded player, search, and categorization.
+* **Study Tools**: Timestamped notes, watch history, and "Watch Later" saved lists.
+* **Engagement**: Q&A threads per video.
+* **Admin Panel**: CRUD operations for video management with role-based access control.
 
-Passwords are hashed with **bcryptjs** via a `pre('save')` hook on the User model - plain-text passwords are never stored.
+## Technical Stack
+| Layer | Technology |
+|---|---|
+| **Frontend** | React 18, Vite, Tailwind CSS |
+| **Backend** | Node.js, Express |
+| **Database** | MongoDB (Mongoose) |
+| **Auth** | JWT (HTTP-only cookies + Bearer token) |
 
----
-
-## Pages & Routes
-
-| URL | Page | Access |
-|---|---|---|
-| `/` | Splash / Landing | Public |
-| `/login` | Login | Public |
-| `/signup` | Sign Up | Public |
-| `/home` | Video Browse | Protected |
-| `/video/:id` | Video Player | Protected |
-| `/notes` | My Notes | Protected |
-| `/saved` | Saved Videos | Protected |
-| `/history` | Watch History | Protected |
-| `/settings/*` | Settings | Protected |
-| `/help` | Help / FAQ | Protected |
-| `/about` | About Us | Protected |
-| `/admin` | Admin Dashboard | Protected |
-| `*` | Redirects to `/` | — |
-
-Unmatched URLs are caught by a wildcard route and redirected to the splash page.
-
----
-
-## Role System
-
-Two roles exist: `user` (default) and `admin`.
-
-- The **`protect`** middleware gates any route that requires a valid login.
-- The **`adminOnly`** middleware (always chained after `protect`) gates routes that only admins may access — currently the video create, update, and delete endpoints.
-- On the frontend, the sidebar link to `/admin` is conditionally rendered only when `user.role === "admin"`, but the server enforces the restriction independently so it cannot be bypassed from the client.
+## Key Logic
+* **Auth**: `protect` middleware for logged-in status; `adminOnly` for sensitive endpoints.
+* **Notes**: Automatically sorted by video timestamp.
+* **History**: Refreshes timestamps on repeat views instead of duplicating entries.
+* **Security**: Passwords hashed with `bcryptjs`; admin permissions enforced server-side.
